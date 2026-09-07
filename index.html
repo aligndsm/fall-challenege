@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,6 +59,14 @@
             letter-spacing: 0.08em;
         }
 
+        /* Leaf overlay effect */
+        .leaf-decor {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.18;
+            z-index: 1;
+        }
+
         /* Checkbox Box Card Animation */
         .task-box {
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -73,7 +83,7 @@
         .task-box.is-checked {
             background-color: #2e2b26;
             border-color: #dfcaad;
-            box-shadow: 0 0 12px rgba(223, 202, 173, 0.2);
+            box-shadow: 0 0 12px rgba(223, 202, 173, 0.25);
         }
 
         .task-box.is-checked .task-text {
@@ -82,21 +92,13 @@
             opacity: 0.85;
         }
 
-        /* Complete Box Special Styles */
-        .complete-box {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .complete-box.all-complete {
-            background: linear-gradient(135deg, #443c31 0%, #292621 100%);
-            border-color: #dfcaad;
-            box-shadow: 0 0 15px rgba(223, 202, 173, 0.3);
-        }
-
-        .complete-box.all-complete .complete-title {
-            color: #dfcaad;
-            text-shadow: 0 0 8px rgba(223, 202, 173, 0.5);
+        /* Focus Section Title Bar */
+        .focus-bar {
+            background-color: #2a2a2e;
+            border-left: 4px solid #dfcaad;
+            padding: 10px 16px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 16px;
         }
 
         /* Custom Checkmark Indicator */
@@ -107,10 +109,10 @@
 </head>
 <body class="py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-between min-h-screen">
 
-    <div class="max-w-4xl w-full">
-        
+    <div class="max-w-4xl w-full relative">
+
         <!-- Top Cloud Sync Bar, Auth Status & Overall Progress -->
-        <div class="flex flex-col sm:flex-row justify-between items-center bg-[#212124]/80 backdrop-blur-md rounded-xl p-3 px-5 mb-6 border border-gray-800 gap-3">
+        <div class="flex flex-col sm:flex-row justify-between items-center bg-[#212124]/90 backdrop-blur-md rounded-xl p-3 px-5 mb-6 border border-gray-800 gap-3 relative z-10">
             <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-gray-300">
                 <span id="syncStatus" class="inline-flex items-center gap-2 font-medium">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -141,148 +143,115 @@
 
         <!-- Main Challenge Poster Box -->
         <div class="bg-align-cardBg rounded-2xl p-6 sm:p-10 shadow-2xl border border-[#333338] relative overflow-hidden">
-            
+
             <!-- Poster Header -->
-            <header class="text-center mb-8 sm:mb-12">
+            <header class="text-center mb-8 sm:mb-10 relative z-10">
                 <h1 class="title-font text-5xl sm:text-7xl font-bold text-[#f0f0f0] uppercase tracking-wider leading-none mb-1">
                     LET'S ALIGN
                 </h1>
                 <h2 class="text-lg sm:text-2xl font-light text-gray-300 tracking-[0.3em] uppercase">
                     FALL CHALLENGE
                 </h2>
+                <div class="text-align-gold title-font text-lg sm:text-xl font-medium tracking-widest mt-1">
+                    9/8 - 9/30
+                </div>
             </header>
 
-            <!-- WEEK 1 SECTION -->
-            <div class="mb-8 sm:mb-10" data-week="1">
-                <!-- Focus text -->
-                <p class="text-xs sm:text-sm font-semibold text-gray-300 mb-1.5 uppercase tracking-wide">
-                    Focus: Building consistency, waking up the core, and hydration.
-                </p>
-                <!-- Week Title Bar -->
-                <div class="bg-align-barBg border-l-4 border-align-accent px-4 py-2.5 rounded-r-md mb-4 shadow-sm">
+            <!-- SECTION 1 -->
+            <div class="mb-8 relative z-10" data-section="1">
+                <div class="focus-bar shadow-sm">
                     <h3 class="title-font text-lg sm:text-xl font-semibold text-white uppercase tracking-wider">
-                        WEEK 1: THE FOUNDATION (THE WARM-UP)
+                        FOCUS: MAKE IT TO YOUR MAT
                     </h3>
                 </div>
-                <!-- 5-Box Grid (4 Tasks + 1 Complete Box) -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w1-1">
-                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
-                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">JOURNAL</span>
-                    </div>
-
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w1-2">
-                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
-                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">ATTEND SUNRISE YOGA</span>
-                    </div>
-
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w1-3">
-                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
-                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">LEAVE ALIGN A GOOGLE REVIEW</span>
-                    </div>
-
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w1-4">
-                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
-                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">POST A PIC + TAG ALIGN</span>
-                    </div>
-
-                    <!-- Complete Badge Box -->
-                    <div class="complete-box col-span-2 sm:col-span-1 h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-center items-center text-center" data-week-complete="1">
-                        <i class="complete-icon fa-solid fa-trophy text-gray-500 mb-1 text-lg"></i>
-                        <span class="complete-title title-font text-base sm:text-lg font-bold text-gray-400 uppercase tracking-wider">COMPLETE</span>
-                        <span class="complete-sub text-[10px] text-gray-500 uppercase mt-1">Tap to toggle week</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- WEEK 2 SECTION -->
-            <div class="mb-8 sm:mb-10" data-week="2">
-                <!-- Focus text -->
-                <p class="text-xs sm:text-sm font-semibold text-gray-300 mb-1.5 uppercase tracking-wide">
-                    Focus: Mixing up movement styles, studio community, and recovery.
-                </p>
-                <!-- Week Title Bar -->
-                <div class="bg-align-barBg border-l-4 border-align-accent px-4 py-2.5 rounded-r-md mb-4 shadow-sm">
-                    <h3 class="title-font text-lg sm:text-xl font-semibold text-white uppercase tracking-wider">
-                        WEEK 2: THE FLOW (BUILDING MOMENTUM)
-                    </h3>
-                </div>
-                <!-- 5-Box Grid -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w2-1">
-                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
-                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">AT HOME MEDITATION</span>
-                    </div>
-
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w2-2">
-                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
-                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">LISTEN TO A NEW PODCAST</span>
-                    </div>
-
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w2-3">
-                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
-                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">TRY A NEW HEALTHY RECIPE</span>
-                    </div>
-
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w2-4">
-                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
-                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">TAKE CLASS FROM ALL 4 INSTRUCTORS</span>
-                    </div>
-
-                    <!-- Complete Badge Box -->
-                    <div class="complete-box col-span-2 sm:col-span-1 h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-center items-center text-center" data-week-complete="2">
-                        <i class="complete-icon fa-solid fa-trophy text-gray-500 mb-1 text-lg"></i>
-                        <span class="complete-title title-font text-base sm:text-lg font-bold text-gray-400 uppercase tracking-wider">COMPLETE</span>
-                        <span class="complete-sub text-[10px] text-gray-500 uppercase mt-1">Tap to toggle week</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- WEEK 3 SECTION -->
-            <div class="mb-8 sm:mb-10" data-week="3">
-                <!-- Focus text -->
-                <p class="text-xs sm:text-sm font-semibold text-gray-300 mb-1.5 uppercase tracking-wide">
-                    Focus: Pushing limits, deepening mindfulness, and community love.
-                </p>
-                <!-- Week Title Bar -->
-                <div class="bg-align-barBg border-l-4 border-align-accent px-4 py-2.5 rounded-r-md mb-4 shadow-sm">
-                    <h3 class="title-font text-lg sm:text-xl font-semibold text-white uppercase tracking-wider">
-                        WEEK 3: THE DEEP ALIGN (THE PUSH & RESTORE)
-                    </h3>
-                </div>
-                <!-- 5-Box Grid -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w3-1">
+                <!-- 4-Box Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3.5 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s1-1">
                         <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
                         <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">TAKE A PILATES CLASS</span>
                     </div>
 
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w3-2">
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3.5 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s1-2">
                         <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
                         <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">TAKE A SCULPT CLASS</span>
                     </div>
 
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w3-3">
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3.5 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s1-3">
                         <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
-                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">TAKE A FLOW OR RECOVERY CLASS</span>
+                        <span class="task-text title-font text-xs sm:text-sm text-gray-200 font-medium uppercase leading-tight my-auto">TAKE A FLOW, FUSION, OR RECOVERY CLASS</span>
                     </div>
 
-                    <div class="task-box h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="w3-4">
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3.5 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s1-4">
                         <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
-                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">BRING A NEW FRIEND TO CLASS</span>
+                        <span class="task-text title-font text-xs sm:text-sm text-gray-200 font-medium uppercase leading-tight my-auto">ATTEND A CLASS FROM 2 DIFFERENT INSTRUCTORS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2 -->
+            <div class="mb-8 relative z-10" data-section="2">
+                <div class="focus-bar shadow-sm">
+                    <h3 class="title-font text-lg sm:text-xl font-semibold text-white uppercase tracking-wider">
+                        FOCUS: COMMUNITY LOVE
+                    </h3>
+                </div>
+                <!-- 4-Box Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3.5 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s2-1">
+                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
+                        <span class="task-text title-font text-xs sm:text-sm text-gray-200 font-medium uppercase leading-tight my-auto">TAKE A MIRROR SELFIE + TAG ALIGN</span>
                     </div>
 
-                    <!-- Complete Badge Box -->
-                    <div class="complete-box col-span-2 sm:col-span-1 h-24 sm:h-28 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-center items-center text-center" data-week-complete="3">
-                        <i class="complete-icon fa-solid fa-trophy text-gray-500 mb-1 text-lg"></i>
-                        <span class="complete-title title-font text-base sm:text-lg font-bold text-gray-400 uppercase tracking-wider">COMPLETE</span>
-                        <span class="complete-sub text-[10px] text-gray-500 uppercase mt-1">Tap to toggle week</span>
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3.5 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s2-2">
+                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
+                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">LEAVE ALIGN A GOOGLE REVIEW</span>
+                    </div>
+
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3.5 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s2-3">
+                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
+                        <span class="task-text title-font text-sm sm:text-base text-gray-200 font-medium uppercase leading-tight my-auto">BRING OR REFER A NEW FRIEND</span>
+                    </div>
+
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3.5 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s2-4">
+                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
+                        <span class="task-text title-font text-xs sm:text-sm text-gray-200 font-medium uppercase leading-tight my-auto">SHARE OR ATTEND SUNRISE YOGA</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3 -->
+            <div class="mb-8 relative z-10" data-section="3">
+                <div class="focus-bar shadow-sm">
+                    <h3 class="title-font text-lg sm:text-xl font-semibold text-white uppercase tracking-wider">
+                        FOCUS: INVESTING IN YOURSELF
+                    </h3>
+                </div>
+                <!-- 4-Box Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s3-1">
+                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
+                        <span class="task-text title-font text-[10px] sm:text-xs text-gray-200 font-medium uppercase leading-tight my-auto">JOURNAL PROMPT "IF I SHOWED UP AS MY BEST SELF EVERY DAY THIS MONTH, WHAT WOULD THAT LOOK LIKE?"</span>
+                    </div>
+
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3.5 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s3-2">
+                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
+                        <span class="task-text title-font text-xs sm:text-sm text-gray-200 font-medium uppercase leading-tight my-auto">READ A NEW BOOK OR LISTEN TO A NEW PODCAST</span>
+                    </div>
+
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3.5 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s3-3">
+                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
+                        <span class="task-text title-font text-xs sm:text-sm text-gray-200 font-medium uppercase leading-tight my-auto">TRY A NEW HEALTHY RECIPE + SHARE</span>
+                    </div>
+
+                    <div class="task-box h-32 sm:h-36 bg-align-boxBg border border-align-border rounded-lg p-3 flex flex-col justify-between items-center text-center cursor-pointer" data-id="s3-4">
+                        <span class="check-badge opacity-0 scale-50 text-align-gold text-xs self-end"><i class="fa-solid fa-circle-check"></i></span>
+                        <span class="task-text title-font text-[10px] sm:text-xs text-gray-200 font-medium uppercase leading-tight my-auto">SET A DAILY WELLNESS GOAL TO COMMIT TO (10K STEPS, WATER INTAKE, LIMIT SCREEN TIME, ETC)</span>
                     </div>
                 </div>
             </div>
 
             <!-- Poster Footer -->
-            <footer class="mt-8 pt-6 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-gray-400 font-medium tracking-widest gap-4">
+            <footer class="mt-8 pt-6 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-gray-400 font-medium tracking-widest gap-4 relative z-10">
                 <a href="https://aligndsm.com" target="_blank" class="hover:text-align-gold transition-colors flex items-center gap-2">
                     <i class="fa-solid fa-globe"></i> aligndsm.com
                 </a>
@@ -448,22 +417,6 @@
                 }
             });
 
-            // Update Week Complete Badges
-            [1, 2, 3].forEach(weekNum => {
-                const weekTasks = [`w${weekNum}-1`, `w${weekNum}-2`, `w${weekNum}-3`, `w${weekNum}-4`].map(id => !!state.tasks[id]);
-                const isWeekComplete = weekTasks.every(Boolean);
-                const completeBox = document.querySelector(`[data-week-complete="${weekNum}"]`);
-                const completeIcon = completeBox.querySelector('.complete-icon');
-
-                if (isWeekComplete) {
-                    completeBox.classList.add('all-complete');
-                    completeIcon.className = 'complete-icon fa-solid fa-circle-check text-align-gold text-2xl mb-1';
-                } else {
-                    completeBox.classList.remove('all-complete');
-                    completeIcon.className = 'complete-icon fa-solid fa-trophy text-gray-500 text-lg mb-1';
-                }
-            });
-
             // Update Progress Bar
             const percent = Math.round((totalChecked / totalTasks) * 100);
             document.getElementById('progressPercent').innerText = `${percent}%`;
@@ -474,8 +427,8 @@
         function triggerConfetti() {
             if (typeof confetti === 'function') {
                 confetti({
-                    particleCount: 80,
-                    spread: 70,
+                    particleCount: 90,
+                    spread: 80,
                     origin: { y: 0.6 },
                     colors: ['#dfcaad', '#ffffff', '#e6ded3', '#d4af37']
                 });
@@ -492,29 +445,11 @@
             saveToFirestore();
 
             if (!wasChecked) {
-                const weekNum = taskId.charAt(1);
-                const weekTasks = [`w${weekNum}-1`, `w${weekNum}-2`, `w${weekNum}-3`, `w${weekNum}-4`].map(id => !!state.tasks[id]);
-                if (weekTasks.every(Boolean)) {
+                // Count total completed
+                const totalChecked = Object.values(state.tasks).filter(Boolean).length;
+                if (totalChecked === 12) {
                     triggerConfetti();
                 }
-            }
-        }
-
-        // Complete Week Box Handler (Toggle whole week)
-        function toggleWeek(weekNum) {
-            const weekTaskIds = [`w${weekNum}-1`, `w${weekNum}-2`, `w${weekNum}-3`, `w${weekNum}-4`];
-            const allCurrentlyChecked = weekTaskIds.every(id => !!state.tasks[id]);
-            
-            weekTaskIds.forEach(id => {
-                state.tasks[id] = !allCurrentlyChecked;
-            });
-
-            saveLocalState();
-            updateUI();
-            saveToFirestore();
-
-            if (!allCurrentlyChecked) {
-                triggerConfetti();
             }
         }
 
